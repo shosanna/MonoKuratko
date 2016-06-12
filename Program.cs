@@ -1,4 +1,5 @@
 ﻿using System;
+using MonoKuratko.Logic;
 
 namespace MonoKuratko
 {
@@ -13,8 +14,10 @@ namespace MonoKuratko
         [STAThread]
         static void Main()
         {
+            new Les(5).NaplnMapu("C:\\dev\\opengl_kuratko\\res\\xmlova.tmx");
+            
             using (var game = new Game1())
-                game.Run();
+            game.Run();
         }
     }
 }
