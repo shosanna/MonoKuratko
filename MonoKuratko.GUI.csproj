@@ -74,6 +74,10 @@
       <Project>{ce90f0b6-f8c8-4a32-b15d-b68cd64185b5}</Project>
       <Name>MonoKuratko.Logic</Name>
     </ProjectReference>
+    <ProjectReference Include="Nez-PCL\Nez.csproj">
+      <Project>{60b7197d-d0d5-405c-90a2-a56903e9b039}</Project>
+      <Name>Nez</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

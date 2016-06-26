@@ -16,7 +16,6 @@ namespace MonoKuratko
     /// </summary>
     public class Game1 : Game
     {
-        private GraphicsDeviceManager graphics;
         private Texture2D kuratkoTexture;
         private Texture2D kuratkoStepLeftTexture;
         private Texture2D kuratkoStepRightTexture;
@@ -25,7 +24,7 @@ namespace MonoKuratko
         private Texture2D texture;
         private int steps = 0;
         private int framesPerStep = 1;
-        private Les les = new Les(5);
+        private Les les = new Les(15);
         private Dictionary<string, Texture2D> Tiles = new Dictionary<string, Texture2D>();
         private int rozmerDlazdice = 32;
         private InputManager _inputManager;
@@ -35,7 +34,7 @@ namespace MonoKuratko
 
         public Game1()
         {
-            graphics = new GraphicsDeviceManager(this);
+            new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
             _inputManager = new InputManager();
@@ -61,9 +60,10 @@ namespace MonoKuratko
             kuratkoStepRightTexture = Content.Load<Texture2D>("kuratko_step_right");
             _boruvkovyStrom = Content.Load<Texture2D>("blueberry_bush");
 
-            _hudbik = Content.Load<Song>("background");
-            _pip = Content.Load<SoundEffect>("pip");
-            MediaPlayer.Play(_hudbik);
+            // HUDBA
+            //_hudbik = Content.Load<Song>("background");
+            //_pip = Content.Load<SoundEffect>("pip");
+            //MediaPlayer.Play(_hudbik);
 
             les.NaplnMapu("C:\\dev\\MonoKuratko\\Content\\mapa.tmx");
 
@@ -94,8 +94,6 @@ namespace MonoKuratko
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
                 Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
-            var keyboard = Keyboard.GetState();
 
             var offset = 1;
 
@@ -138,10 +136,6 @@ namespace MonoKuratko
                 for (int j = 0; j < les.Pozadi.Size; j++) {
                     var pos = new Vector2(i*rozmerDlazdice, j*rozmerDlazdice);
                     spriteBatch.Draw(Tiles[les.Pozadi[i, j].Obrazek], pos);
-
-                    if (les.Boruvky[i, j]) {
-                        spriteBatch.Draw(_boruvkovyStrom, pos);
-                    }
                 }
             }            
 
@@ -149,8 +143,6 @@ namespace MonoKuratko
 
             spriteBatch.End();
 
-
-            // TODO: Add your drawing code here
 
             base.Draw(gameTime);
         }
